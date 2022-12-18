@@ -7,6 +7,7 @@ void setup()
 
 void loop()
 {
-  digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN));
-  delay(500);
+  digitalWrite(LED_BUILTIN, !digitalRead(LED_BUILTIN)); // мигание светодиодом
+  delay(500);                                           // задержка
+  delay(100);
 }
