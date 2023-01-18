@@ -1,2 +1,0 @@
-logo	KEYWORD2
-testingOLED KEYWORD2

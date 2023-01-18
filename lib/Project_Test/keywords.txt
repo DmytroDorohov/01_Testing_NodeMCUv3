@@ -1,2 +1,0 @@
-TEST	KEYWORD1
-scanWire	KEYWORD2
