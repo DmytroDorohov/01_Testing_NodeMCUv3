@@ -9,7 +9,8 @@
 #include <Adafruit_SSD1306.h>
 
 void logo(String);         // function of show logo
-void showInitWifi(int8_t); // function of show initialization WiFi
+void showInitWifi(int);    // function of show initialization WiFi
+void showInitSensors(int); // function of show initialization sensors
 void testingOLED(void);    // function of testing OLED
 
 extern Adafruit_SSD1306 oled;

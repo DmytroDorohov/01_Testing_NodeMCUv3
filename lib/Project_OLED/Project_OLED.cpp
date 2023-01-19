@@ -35,7 +35,7 @@ void logo(String ver)
   delay(2000);
 }
 
-void showInitWifi(int8_t i)
+void showInitWifi(int i)
 {
   switch (i)
   {
@@ -57,8 +57,24 @@ void showInitWifi(int8_t i)
     oled.println(WiFi.localIP());
     oled.println();
     oled.display();
+    break;
   default:
     oled.println("ERROR Conecting");
+    oled.display();
+    break;
+  }
+}
+
+void showInitSensors(int i)
+{
+  switch (i)
+  {
+  case 1:
+    oled.println("Sensor initialization");
+    oled.display();
+    break;
+  default:
+    oled.println("ERROR sensor ");
     oled.display();
     break;
   }

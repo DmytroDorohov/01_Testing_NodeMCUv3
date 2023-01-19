@@ -1,6 +1,8 @@
 #include <Arduino.h>
 #include <ESP8266WiFi.h>
 #include <Project_OLED.h>
+#include <Project_Test.h>
+#include <Project_Sensors.h>
 
 const String VERSION = "0.1";           // Version project
 const char *WIFI_SSID = "TP-Link_D445"; // WiFi login
@@ -11,31 +13,43 @@ const int ADDR_MQ = 0x10;               // MQ135 address on I2C
 const int ADDR_RTC = 0x10;              // TinyRTC DS1307 address on I2C
 const int ADDR_MEM = 0x10;              // TinyRTC AT24C address on I2C
 
+int dataSensors[10];
+
 void setup()
 {
+  // Start
   Serial.begin(115200);
   Wire.begin();
   logo(VERSION); // Show logo in start
+
+  // Conecting to WiFi
   WiFi.begin(WIFI_SSID, WIFI_PASS);
-  showInitWiFi(1);
-  for (int i = 1; i <= 20; i++)
+  showInitWifi(1);
+  for (int i = 1; i <= 40; i++)
   {
-    showInitWiFi(2);
-    delay(250);
+    showInitWifi(2);
+    delay(500);
     if (WiFi.status() == WL_CONNECTED)
-      break;
-    else if (i == 20)
+      showInitWifi(3);
+    else if (i == 40)
     {
-      showInitWiFi(20);
-      return;
+      showInitWifi(40);
+      break;
     }
   }
-  showInitWiFi(3);
+
+  // Initialization sesors
+  initSensors();
 }
 
 void loop()
 {
   delay(5000); // задержка
-  // scanWire();   // сканирование I2C линии
+  scanWire();  // сканирование I2C линии
   testingOLED();
+  getData(dataSensors);
+  for (int i = 0; i < 10; i++)
+  {
+    Serial.println(dataSensors[i]);
+  }
 }
